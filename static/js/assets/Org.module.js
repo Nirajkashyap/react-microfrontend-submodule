@@ -1,8 +1,8 @@
 (function (global, factory) {
     typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('react'), require('react-redux'), require('redux-observable'), require('rxjs'), require('rxjs/operators')) :
     typeof define === 'function' && define.amd ? define(['exports', 'react', 'react-redux', 'redux-observable', 'rxjs', 'rxjs/operators'], factory) :
-    (global = global || self, factory(global.Org = {}, global.React, global['react-redux'], global['redux-observable'], global.rxjs, global.rxoperators));
-}(this, function (exports, React, reactRedux, reduxObservable, rxjs, rxoperators) { 'use strict';
+    (global = global || self, factory(global.Org = {}, global.microFrontendReactV16.React, global.microFrontendReactV16['react-redux'], global.microFrontendReactV16['redux-observable'], global.microFrontendReactV16.rxjs, global.microFrontendReactV16.rxoperators));
+}(this, (function (exports, React, reactRedux, reduxObservable, rxjs, rxoperators) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation. All rights reserved.
@@ -244,7 +244,7 @@
 
     Object.defineProperty(exports, '__esModule', { value: true });
 
-}));
+})));
 //# sourceMappingURL=Org.module.js.map
 var temp = ' .Org-cmp {  padding-top: 50px; }.OrgDetails-cmp .hide {  display: none; }.OrgDetails-cmp .show {  color: red; }'
 appendStyle(temp)
