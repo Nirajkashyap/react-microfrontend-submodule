@@ -74,7 +74,7 @@
     }
 
     /* tslint:disable:no-string-literal */
-    var qs = window['qs'];
+    var qs = window['microFrontendReactV16']['qs'];
     var OrgDetails = /** @class */ (function (_super) {
         __extends(OrgDetails, _super);
         function OrgDetails(props) {
@@ -172,6 +172,21 @@
     }
     var OrgDetailsContainer = reactRedux.connect(mapStateToProps, mapDispatchToProps)(OrgDetails);
 
+    /* tslint:disable:no-string-literal */
+    var OrgTestPage = /** @class */ (function (_super) {
+        __extends(OrgTestPage, _super);
+        function OrgTestPage(props) {
+            return _super.call(this, props) || this;
+        }
+        OrgTestPage.prototype.render = function () {
+            return (React.createElement("div", { className: "OrgTestPage-cmp" },
+                "Hello from Dynamic (runtime + lazy ) component, this is ",
+                React.createElement("b", null, "not"),
+                " CookieSecure page."));
+        };
+        return OrgTestPage;
+    }(React.Component));
+
     function orgReducer(state, action) {
         if (state === void 0) { state = { githubOrgName: "", githubOrgLoading: false, githubOrgDetails: {} }; }
         switch (action.type) {
@@ -229,7 +244,7 @@
         }
         Org.prototype.render = function () {
             return (React.createElement("div", { className: "Org-cmp col-sm-9" },
-                "Hello from Daynamic (runtime + lazy ) component, please enter github org name to get info.",
+                "Hello from Dynamic (runtime + lazy ) component, this is CookieSecure page. please enter github org name to get info.",
                 React.createElement(OrgDetailsContainer, null)));
         };
         return Org;
@@ -237,7 +252,8 @@
     // expose as many cmp as required
     window['tempLazyLoaded'] = {
         index: Org,
-        wrapper: OrgDetailsContainer
+        wrapper: OrgDetailsContainer,
+        testpage: OrgTestPage
     };
 
     exports.Org = Org;
