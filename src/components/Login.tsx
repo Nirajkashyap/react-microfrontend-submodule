@@ -39,8 +39,10 @@ export default class Login extends React.Component<IProps,any> {
 
     public handleSubmit(event) {
         event.preventDefault();
+        
         this.props.login(this.state.username,this.state.password);
-        return ('<')
+        // api response 200, make cookie, LOGIN_FULLFILLED action is also called
+        
     }
 
     public componentWillMount(){
@@ -69,7 +71,7 @@ export default class Login extends React.Component<IProps,any> {
 
     public render() {
         return (
-            <div className="Login-cmp col-sm-12" id="login">
+            <div className="Login-component col-sm-12" id="login">
                 <h3 className="text-center text-white pt-5">Login form</h3>
                 <div className="container">
                     <div id="login-row" className="row justify-content-center align-items-center">

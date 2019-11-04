@@ -38,7 +38,9 @@ export function getRequest(requestOptions : any, recievingFunction: any, recievi
                 // if redirection url want to set in query string than remove LOGOUT action from below
                 // remove only related cookies for now we are removing all Front-end cookies
                 document.cookie.split(";").forEach((c) => {
-                    document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/");
+                     /* tslint:disable:no-string-literal */
+                    window['eraseCookieFromAllPaths'](c);
+                     /* tslint:disable:no-string-literal */
                 });
 
                 history.push('/login');
@@ -72,9 +74,7 @@ export function postRequest(requestOptions : any, recievingFunction: any, reciev
 
     return ajax(mergedRequestOptions).pipe(
         map(response => {
-            if(requestOptions.url.indexOf('login')> -1){
-                document.cookie = "isLoggedin=true";
-            }
+            
             return recievingFunction(response.response);
         }),
         takeUntil(action$.pipe(
@@ -94,7 +94,9 @@ export function postRequest(requestOptions : any, recievingFunction: any, reciev
                 // if redirection url want to set in query string than remove LOGOUT action from below
                 // remove only related cookies for now we are removing all Front-end cookies
                 document.cookie.split(";").forEach((c) => {
-                    document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/");
+                     /* tslint:disable:no-string-literal */
+                    window['eraseCookieFromAllPaths'](c);
+                     /* tslint:disable:no-string-literal */
                 });
                 history.push('/login');
                 return  concat([{ type : 'CANCEL_ALL_XHR'} , {type:'LOGOUT' , from : nextlocation}  ]);
@@ -115,19 +117,24 @@ export function postRequest(requestOptions : any, recievingFunction: any, reciev
 
 /* tslint:disable:no-string-literal */
 // expose api client
+let apiClient;
+apiClient = {};
 
-window['apiClient'] = {};
-
-Object.defineProperty(window['apiClient'], "getRequest", {
+Object.defineProperty(apiClient, "getRequest", {
     value: Object.freeze(getRequest),
     writable: false
 });
 
-Object.defineProperty(window['apiClient'], "postRequest", {
+Object.defineProperty(apiClient, "postRequest", {
     value: Object.freeze(postRequest),
     writable: false
 
 });
 
+Object.defineProperty(window, "apiClient", {
+    value: Object.freeze(apiClient),
+    writable: false
+
+});
 
 /* tslint:disable:no-string-literal */
