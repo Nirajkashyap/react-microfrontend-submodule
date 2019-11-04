@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import Header from "../components/Header";
 import {Dispatch} from "redux";
-import * as actions from '../actions/';
+import * as actions from '../actions';
 
 export function mapStateToProps(state) {
     return {

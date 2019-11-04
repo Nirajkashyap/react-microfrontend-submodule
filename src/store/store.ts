@@ -12,7 +12,7 @@ import {
     loginEpic,
     fetchGithubUserEpic,
     fetchGithubUserReposEpic
-} from '../epic/';
+} from '../epic';
 
 import {rootReducerTree, rootReducer} from '../reducers/index'
 
